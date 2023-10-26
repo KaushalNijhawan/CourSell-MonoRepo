@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const secret_text = "this is a secrete @@@@@@@@@@@@@@@@";
 
-const generateToken = (username: string) => {
+export const generateToken = (username: string) => {
 
     let token = jwt.sign({
         username: username
