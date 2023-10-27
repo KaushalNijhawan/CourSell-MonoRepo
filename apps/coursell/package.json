@@ -23,7 +23,8 @@
     "react-dom": "^18",
     "save": "^2.9.0",
     "ui": "*",
-    "jwt" : "*"
+    "jwt" : "*",
+    "store" : "*"
   },
   "devDependencies": {
     "@types/node": "^20",

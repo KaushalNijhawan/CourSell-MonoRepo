@@ -14,7 +14,7 @@ export default function Home() {
   
   return (
     <>
-      <Signup  handleSignup  = {handleSignup}></Signup>
+      {/* <Signup  handleSignup  = {handleSignup}></Signup> */}
     </>
   )
 }
