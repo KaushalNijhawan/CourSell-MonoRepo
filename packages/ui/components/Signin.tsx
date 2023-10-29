@@ -6,7 +6,7 @@ export const Signin = (props : any) => {
         props.handleLogin(username , password);
     }
 
-    const [password, setPassword] = useState<string>('');
+    const [password, setPassword]  =  useState<string>('');
     const [username , setUsername] = useState<string>('');
 
     return (

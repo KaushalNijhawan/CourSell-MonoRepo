@@ -17,14 +17,15 @@
     "axios": "^1.5.1",
     "db": "*",
     "jsonwebtoken": "^9.0.2",
+    "jwt": "*",
     "mongoose": "^7.6.3",
     "next": "13.5.6",
+    "next-auth": "^4.24.4",
     "react": "^18",
     "react-dom": "^18",
     "save": "^2.9.0",
-    "ui": "*",
-    "jwt" : "*",
-    "store" : "*"
+    "store": "*",
+    "ui": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

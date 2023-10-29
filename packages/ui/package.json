@@ -11,10 +11,10 @@
   "devDependencies": {
     "@turbo/gen": "^1.10.12",
     "@types/node": "^20.5.2",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "eslint-config-custom": "*",
-    "react": "^18.2.0",
+    "react": "^18",
     "tsconfig": "*",
     "typescript": "^4.5.2"
   },
