@@ -16,12 +16,3 @@ const courseSchema = new mongoose.Schema({
 export const userM = mongoose.models.Users || mongoose.model('Users',userSchema) ;
 
 export const courseM = mongoose.models.Courses || mongoose.model('Courses' , courseSchema);
-//  a small fix where it will return the already compiled mongoose models to the endUser rather than recompiling them
-
-// export const courseM = mongoose.models ? mongoose.models.courses : mongoose.model('courses', courseSchema);
-
-
-
-
-
-

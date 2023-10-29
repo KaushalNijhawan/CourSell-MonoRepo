@@ -6,6 +6,7 @@ import { AppBar } from 'ui'
 import { useRouter } from 'next/router'
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
+  
   const handleRegister = () =>{
     router.push('/signup');
   }
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   const handleLogin = () =>{
       signIn();
   }
+
   return (
     <SessionProvider session={pageProps.session}>
       <RecoilRoot>

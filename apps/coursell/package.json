@@ -15,7 +15,6 @@
     "@mui/material": "^5.14.15",
     "@types/mongoose": "^5.11.97",
     "axios": "^1.5.1",
-    "db": "*",
     "jsonwebtoken": "^9.0.2",
     "jwt": "*",
     "mongoose": "^7.6.3",
