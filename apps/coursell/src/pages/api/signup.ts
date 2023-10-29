@@ -1,5 +1,5 @@
+import { userM } from "@/lib/MongooseModels";
 import { initiateConnection } from "@/lib/mongooseCon";
-import { userM } from "db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req : NextApiRequest , res: NextApiResponse) =>{

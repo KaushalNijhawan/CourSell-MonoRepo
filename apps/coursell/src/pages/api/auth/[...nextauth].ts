@@ -2,7 +2,7 @@ import NextAuth from "next-auth/next"
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { initiateConnection } from "@/lib/mongooseCon";
-import { userM } from "db";
+import { userM } from "@/lib/MongooseModels";
 export const authOptions = {
     providers: [
         GoogleProvider({
@@ -25,7 +25,7 @@ export const authOptions = {
                     console.log(userFind);
 
                     if(userFind && userFind.username == userObject.username && userFind.password == userObject.password ){
-                        return userFind;
+                        return { id : userFind._id , name : userFind.username};
                     }
                 }
                 
