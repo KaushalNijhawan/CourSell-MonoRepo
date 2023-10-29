@@ -8,11 +8,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const sesssionObj = useSession();
-  const handleSignup = (username : string , password : string) =>{
-    console.log(username);
-    console.log(password);
-    
-  }
   console.log(sesssionObj);
   return (
     <>
