@@ -9,7 +9,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <SessionProvider session={pageProps.session}>
       <RecoilRoot>
-        <AppBar />
         <Component {...pageProps} />
       </RecoilRoot>
     </SessionProvider>

@@ -1,6 +1,6 @@
 import { Card, CardMedia, Typography, Button, CardContent, CardActions } from "@mui/material";
 import { useRouter } from "next/navigation";
-const CourseCard = (props: any) => {
+export const CourseCard = (props: any) => {
     const router = useRouter();
     return (
         <div style={{ marginLeft: 10, marginTop: 10 }}>
@@ -27,5 +27,3 @@ const CourseCard = (props: any) => {
         </div>
     )
 }
-
-export default CourseCard;
