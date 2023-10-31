@@ -1,5 +1,5 @@
+import { userM } from "@/lib/MongooseModels";
 import { initiateConnection } from "@/lib/mongooseCon";
-import { userM } from "db";
 import { generateToken } from "jwt";
 import { NextApiRequest, NextApiResponse } from "next";
 
