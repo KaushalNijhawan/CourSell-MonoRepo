@@ -16,14 +16,11 @@ export const authOptions = {
                 password: { label: 'password', type: 'password' }
             },
             async authorize(credentials, req) {
-                console.log(credentials);
-                console.log(req.body);
                 const userObject : {username : string , password: string} = req.body as {username : string , password: string};
                 if(userObject.username && userObject.password){
                     await initiateConnection();
                     const userFind = await userM.findOne({ username : userObject.username});
                     console.log(userFind);
-
                     if(userFind && userFind.username == userObject.username && userFind.password == userObject.password ){
                         return { id : userFind._id , name : userFind.username};
                     }
@@ -36,7 +33,8 @@ export const authOptions = {
     secret: process.env.SECRET,
     session: {
         strategy: 'jwt',
-        maxAge: 3600
+        maxAge: 60*60*4,
+
     },
     jwt: {
         encryption: true
