@@ -14,10 +14,10 @@ export const AppBar = (props: any) => {
                     <Typography variant="h6" style={{marginRight:8}}>
                         Hello, {username}
                     </Typography>
-                    <Button variant = "text" style={{marginRight:8}} color="success">View Courses</Button>
-                    <Button variant = "text" style={{marginRight:8}}>Add Courses</Button>
+                    <Button variant = "text" style={{marginRight:8}} color="success" onClick={props.coursesView}>View Courses</Button>
+                    <Button variant = "text" style={{marginRight:8}} onClick = {props.addCourseView}>Add Courses</Button>
                     
-                    <Button variant="text" color="error">LogOut</Button>
+                    <Button variant="text" color="error" onClick={props.logout}>LogOut</Button>
                 </div> :
                 <div>
                     <Button variant={'contained'} onClick={props.login} >
