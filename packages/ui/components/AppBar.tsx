@@ -1,10 +1,15 @@
 import { Button, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const AppBar = (props: any) => {
 
     const [username, setUsername] = useState<string>(!props.loggedIn ? '' : props.loggedIn);
 
+    useEffect(()=>{
+        if(!username){
+            props.redirect();
+        }
+    }, []);
     console.log(username);
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>

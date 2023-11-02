@@ -28,16 +28,20 @@ const Courses = (props: any) => {
     }
 
     const addCourseView = () => {
-        router.push('/addCourse');
+        router.push('/addCourses');
     }
 
     const logout = () => {
         router.push('/');
     }
+
+    const redirect = () =>{
+        router.push('/');
+    }
     return (
         <div>
             <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
-                addCourseView={addCourseView} logout={logout} />
+                addCourseView={addCourseView} logout={logout} redirect = {redirect} />
             <Grid container >
                 <Grid item md={12} xs={12} lg={12} >
                     <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'center' }}>

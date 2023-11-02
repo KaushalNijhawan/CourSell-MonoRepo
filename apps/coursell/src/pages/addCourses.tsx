@@ -1,35 +1,87 @@
-import { Button, TextField, Typography , Card} from "@mui/material";
+import { Button, TextField, Typography, Card } from "@mui/material";
 import { useState } from "react";
-import { AppBar } from "ui";
+import { AddCourses, AppBar } from "ui";
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { authOptions } from "./api/auth/[...nextauth]";
+import { GetServerSidePropsContext } from "next";
+import { getServerSession } from "next-auth";
+import axios from "axios";
+
+const AddCourse = (props: any) => {
+    const router = useRouter();
+    const handleSubmit = async (title: string, description: string, price: string, imageLink: string) => {
+        try {
+            let response = await axios.post("http://localhost:3000/api/addCourse", {
+                title: title, description: description, price: price, imageLink: imageLink
+            }, {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+
+            if(response && response.data && response.data.courseId ){
+                router.push('/courses');
+            }
+        } catch (err) {
+            console.log(err);
+        }
 
 
-const AddCourses = () =>{
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
-    const [imageLink, setImageLink] = useState('');
+    }
 
-    return(
+    const [username, setUsername] = useState<string>(props.sessionObj && props.sessionObj.user && props.sessionObj.user.name ? props.sessionObj.user?.name as string : '');
+
+    const handleRegister = () => {
+        router.push('/signup');
+    }
+
+    const handleLogin = () => {
+        signIn();
+    }
+
+    const coursesView = () => {
+        router.push('/courses');
+    }
+
+    const addCourseView = () => {
+        router.push('/addCourses');
+    }
+
+    const logout = () => {
+        router.push('/');
+    }
+
+    const redirect = () => {
+        router.push('/');
+    }
+
+    return (
         <div>
-            <AppBar />
-            <div style={{ height: '90vh', width: '90vw', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 500, width: 450 }}>
-                    <Typography variant="h6">
-                        CourSell Login!
-                    </Typography>
-                    <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: 250 }} onChange={(e) => setTitle(e.target.value)} />
-                    <TextField id="outlined-basic" label="Description" variant="outlined" style={{ width: 250, marginTop: 10 }}
-                        type="text" onChange={(e) => setDescription(e.target.value)}  />
-                    <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: 250, marginTop: 10 }} onChange={(e) => setPrice(e.target.value)}
-                 />
-                    <TextField id="outlined-basic" label="Image" variant="outlined" style={{ width: 250, marginTop: 10 }} onChange={(e) => setImageLink(e.target.value)} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10 }} >
-                        <Button variant='outlined' style={{ marginLeft: 10 }} color='success'>Add Course</Button>
-                    </div>
-                </Card>
-            </div>
+            <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
+                addCourseView={addCourseView} logout={logout} redirect={redirect} />
+            <AddCourses handleSubmit={handleSubmit} />
         </div>
     );
 }
 
-export default AddCourses;
+export const getServerSideProps = async (ctxt: GetServerSidePropsContext) => {
+    const session = await getServerSession(ctxt.req, ctxt.res, authOptions);
+    if (session) {
+        let sessionObj = session;
+        if (sessionObj && sessionObj.user && (!sessionObj.user.email || !sessionObj.user.image)) {
+            sessionObj.user.email = !sessionObj.user.email ? null : sessionObj.user.email;
+            sessionObj.user.image = !sessionObj.user.image ? null : sessionObj.user.image;
+        }
+
+        return {
+            props: { sessionObj }
+        }
+    }
+
+    return {
+        props: {}
+    };
+}
+
+export default AddCourse;

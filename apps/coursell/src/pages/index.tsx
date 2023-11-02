@@ -28,17 +28,21 @@ export default function Home(props: any) {
   }
 
   const addCourseView = () => {
-    router.push('/addCourse');
+    router.push('/addCourses');
   }
 
   const logout = () => {
     router.push('/');
   }
 
+  const redirect = () =>{
+    router.push('/');
+  }
+
   return (
     <>
       <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
-        addCourseView={addCourseView} logout={logout} />
+        addCourseView={addCourseView} logout={logout} redirect = {redirect} />
       <Grid container style={{ padding: 50, marginTop: '5vh' }}>
         <Grid item md={7} sm={6} xs={12}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
