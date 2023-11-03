@@ -7,9 +7,10 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import axios from "axios";
-
+import { useEffect } from 'react';
 const AddCourse = (props: any) => {
     const router = useRouter();
+    
     const handleSubmit = async (title: string, description: string, price: string, imageLink: string) => {
         try {
             let response = await axios.post("http://localhost:3000/api/addCourse", {
@@ -20,7 +21,7 @@ const AddCourse = (props: any) => {
                 }
             });
 
-            if(response && response.data && response.data.courseId ){
+            if (response && response.data && response.data.courseId) {
                 router.push('/courses');
             }
         } catch (err) {
@@ -80,8 +81,11 @@ export const getServerSideProps = async (ctxt: GetServerSidePropsContext) => {
     }
 
     return {
-        props: {}
-    };
+        redirect: {
+            destination: '/',
+            permanent: false,
+        },
+    }
 }
 
 export default AddCourse;

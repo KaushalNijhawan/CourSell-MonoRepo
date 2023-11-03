@@ -3,15 +3,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import axios from "axios";
 import { AppBar } from "ui";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useRouter } from 'next/router';
 import { signIn, signOut } from 'next-auth/react';
 import { CourseCard } from "ui";
 import { Grid, Typography } from "@mui/material";
 const Courses = (props: any) => {
-    console.log(props);
-    const router = useRouter();
-
     const [username, setUsername] = useState<string>(props.sessionObj && props.sessionObj.user && props.sessionObj.user.name
         ? props.sessionObj.user.name : '');
 
@@ -38,6 +35,11 @@ const Courses = (props: any) => {
     const redirect = () =>{
         router.push('/');
     }
+
+    const handleCardView = () =>{
+        router.push('/course');
+    }
+
     return (
         <div>
             <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
@@ -46,7 +48,8 @@ const Courses = (props: any) => {
                 <Grid item md={12} xs={12} lg={12} >
                     <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'center' }}>
 
-                        {props.courses ? props.courses.map((course: any) => <CourseCard course={course} key={course._id} />) :
+                        {props.courses ? props.courses.map((course: any) => <CourseCard course={course} key={course._id} handleCardView 
+                         = {handleCardView}/>) :
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Typography variant="h2">
                                     No Courses Found!
@@ -93,7 +96,10 @@ export const getServerSideProps = async (ctxt: GetServerSidePropsContext) => {
     }
 
     return {
-        props: {}
-    };
+        redirect: {
+            destination: '/',
+            permanent: false,
+        },
+    }
 }
 
