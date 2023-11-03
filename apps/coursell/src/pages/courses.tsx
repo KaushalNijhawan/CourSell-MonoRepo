@@ -11,7 +11,7 @@ import { Grid, Typography } from "@mui/material";
 const Courses = (props: any) => {
     const [username, setUsername] = useState<string>(props.sessionObj && props.sessionObj.user && props.sessionObj.user.name
         ? props.sessionObj.user.name : '');
-
+    const router = useRouter();
     const handleRegister = () => {
         router.push('/signup');
     }
