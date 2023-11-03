@@ -10,7 +10,7 @@ export const AddCourses = (props: any) =>{
         props.handleSubmit(title, description, price, imageLink);
     }
     return(
-        <div style={{ height: '90vh', width: '90vw', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ height: '90vh', width: '90vw'}}>
                 <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 500, width: 450 }}>
                     <Typography variant="h6">
                         CourSell Login!

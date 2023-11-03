@@ -10,7 +10,7 @@ import axios from "axios";
 import { useEffect } from 'react';
 const AddCourse = (props: any) => {
     const router = useRouter();
-    
+
     const handleSubmit = async (title: string, description: string, price: string, imageLink: string) => {
         try {
             let response = await axios.post("http://localhost:3000/api/addCourse", {
@@ -53,15 +53,14 @@ const AddCourse = (props: any) => {
         router.push('/');
     }
 
-    const redirect = () => {
-        router.push('/');
-    }
 
     return (
         <div>
             <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
-                addCourseView={addCourseView} logout={logout} redirect={redirect} />
-            <AddCourses handleSubmit={handleSubmit} />
+                addCourseView={addCourseView} logout={logout} />
+            <center>
+                <AddCourses handleSubmit={handleSubmit} />
+            </center>
         </div>
     );
 }

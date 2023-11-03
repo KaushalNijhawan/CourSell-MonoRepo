@@ -1,11 +1,12 @@
 import { courseM } from '@/lib/MongooseModels';
+import { initiateConnection } from '@/lib/mongooseCon';
 import {NextApiRequest, NextApiResponse} from 'next';
 const handler = async (req: NextApiRequest , res: NextApiResponse) =>{
     if(req.method == "PUT"){
         const params = req.query;
         const courseDetails= req.body;
-
         if(courseDetails && courseDetails.price && courseDetails.description && courseDetails.imageLink){
+            await initiateConnection();
             let updateCourse = await courseM.findByIdAndUpdate({_id : courseDetails._id} , { price: courseDetails.price, description : 
             courseDetails.description, imageLink : courseDetails.imageLink, title: courseDetails.title});
             

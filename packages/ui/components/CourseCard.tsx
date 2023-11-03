@@ -20,7 +20,9 @@ export const CourseCard = (props: any) => {
                     </div>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={props.handleCardView}>View & Edit</Button>
+                    {!props.updateProp ? 
+                    <Button size="small" onClick={() => props.handleCardView(props.course._id)}>View & Edit</Button> : null}
+                    
                 </CardActions>
             </Card>
         </div>

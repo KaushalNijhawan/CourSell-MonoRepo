@@ -32,24 +32,20 @@ const Courses = (props: any) => {
         router.push('/');
     }
 
-    const redirect = () =>{
-        router.push('/');
-    }
-
-    const handleCardView = () =>{
-        router.push('/course');
+    const handleCardView = (id : string) =>{
+        router.push(`/updateCourse/${id}`);
     }
 
     return (
         <div>
             <AppBar login={handleLogin} register={handleRegister} loggedIn={username} coursesView={coursesView}
-                addCourseView={addCourseView} logout={logout} redirect = {redirect} />
+                addCourseView={addCourseView} logout={logout} />
             <Grid container >
                 <Grid item md={12} xs={12} lg={12} >
                     <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'center' }}>
 
                         {props.courses ? props.courses.map((course: any) => <CourseCard course={course} key={course._id} handleCardView 
-                         = {handleCardView}/>) :
+                         = {handleCardView} updateProp = {false}/>) :
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Typography variant="h2">
                                     No Courses Found!
